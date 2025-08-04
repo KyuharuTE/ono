@@ -39,6 +39,10 @@ QQ, Now with Superpowers
   <td><a href="https://github.com/suzhelan/TimTool">TimTool</a></td>
   <td>Tim功能性增强XPosed模块，为Tim增加更多趣味功能</td>
 </tr>
+<tr>
+  <td><a href="https://github.com/fuqiuluo/QwQ">QWQ</a></td>
+  <td>QwQ sacrifice - To make OICQ great again</td>
+</tr>
 </table>
 
 

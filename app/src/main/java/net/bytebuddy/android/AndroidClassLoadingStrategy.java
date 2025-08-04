@@ -578,10 +578,9 @@ public abstract class AndroidClassLoadingStrategy implements ClassLoadingStrateg
             if (classLoader == null) {
                 throw new IllegalArgumentException("you need to provide an injectable class loader to use this class loading strategy");
             }
-            if (!(classLoader instanceof IAndroidInjectableClassLoader)) {
+            if (!(classLoader instanceof IAndroidInjectableClassLoader injectableClassLoader)) {
                 throw new IllegalArgumentException("class loader is not injectable");
             }
-            IAndroidInjectableClassLoader injectableClassLoader = (IAndroidInjectableClassLoader) classLoader;
             injectableClassLoader.injectDex(dexFile, null);
             Map<TypeDescription, Class<?>> loadedTypes = new HashMap<TypeDescription, Class<?>>();
             for (TypeDescription typeDescription : typeDescriptions) {

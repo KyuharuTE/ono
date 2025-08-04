@@ -10,7 +10,7 @@ import moe.ono.ui.handygridview.scrollrunner.ScrollRunner;
 public class Child implements ICarrier {
     public int position;
     public View view;
-    private ScrollRunner mRunner;
+    private final ScrollRunner mRunner;
     private int from, to;
     private boolean hasNext = false;
     private HandyGridView parent;
@@ -89,8 +89,7 @@ public class Child implements ICarrier {
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
-        if (obj instanceof Child) {
-            Child child = (Child) obj;
+        if (obj instanceof Child child) {
             if (this.view == child.view) {
                 return true;
             }

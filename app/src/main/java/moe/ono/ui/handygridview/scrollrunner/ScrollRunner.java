@@ -6,7 +6,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
 
 public class ScrollRunner implements Runnable {
-    private Scroller mScroller;
+    private final Scroller mScroller;
     private ICarrier mCarrier;
     private int mDuration = 250;
     private int lastX, lastY;

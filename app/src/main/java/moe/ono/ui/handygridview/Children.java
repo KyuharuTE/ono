@@ -7,9 +7,9 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
 public class Children {
-    private LinkedHashMap<View, Child> container = new LinkedHashMap<>();
-    private LinkedList<Child> mChildren = new LinkedList<>();
-    private HandyGridView parent;
+    private final LinkedHashMap<View, Child> container = new LinkedHashMap<>();
+    private final LinkedList<Child> mChildren = new LinkedList<>();
+    private final HandyGridView parent;
 
     public Children(HandyGridView parent) {
         this.parent = parent;

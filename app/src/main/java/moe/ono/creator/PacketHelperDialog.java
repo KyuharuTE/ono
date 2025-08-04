@@ -119,6 +119,8 @@ public class PacketHelperDialog extends BottomPopupView {
     public static int chatType;
     public static ContactCompat contactCompat;
     private static RadioGroup mRgSendType;
+    private static Boolean isSendByLongmsg = false;
+    private static String originalPbContent = "";
     public static RadioGroup mRgSendBy;
     public static CheckBox mRbXmlForward;
 
@@ -314,7 +316,9 @@ public class PacketHelperDialog extends BottomPopupView {
                     }
 
                     if (rbSendBy == R.id.rb_send_by_directly) {
-                        QPacketHelperKt.sendMessage(text, peer, chatType == GROUP, send_type);
+                        QPacketHelperKt.sendMessage(text, peer, chatType == GROUP, send_type, isSendByLongmsg, originalPbContent);
+                        originalPbContent = "";
+                        isSendByLongmsg = false;
                     } else if (rbSendBy == R.id.rb_send_by_longmsg) {
                         String data = "{\n" +
                                 "  \"2\": {\n" +
@@ -670,9 +674,13 @@ public class PacketHelperDialog extends BottomPopupView {
     }
 
 
-    public static void setContent(String content) {
+    public static void setContent(String content, Boolean longmsg) {
         SyncUtils.runOnUiThread(() -> {
             try {
+                if (longmsg) {
+                    isSendByLongmsg = true;
+                    originalPbContent = String.valueOf(editText.getText());
+                }
                 editText.setText(content);
                 mRgSendType.check(R.id.rb_element);
                 mRgSendBy.check(R.id.rb_send_by_directly);
@@ -779,7 +787,7 @@ public class PacketHelperDialog extends BottomPopupView {
                         } else if (type.equals("text")){
                             send_text_msg(content, contactCompat);
                         } else {
-                            QPacketHelperKt.sendMessage(content, uid, isGroupMsg, type);
+                            QPacketHelperKt.sendMessage(content, uid, isGroupMsg, type, isSendByLongmsg, originalPbContent);
                         }
 
                         currentCount++;

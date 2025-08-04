@@ -9,10 +9,7 @@ import android.os.Build;
 public class SdkVerUtils {
     public static boolean isAboveVersion(int version) {
         int sdkVersion = Build.VERSION.SDK_INT;
-        if (sdkVersion >= version) {
-            return true;
-        }
-        return false;
+        return sdkVersion >= version;
     }
 
     public static boolean isAbove19() {

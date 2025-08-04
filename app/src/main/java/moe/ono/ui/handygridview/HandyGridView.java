@@ -47,7 +47,7 @@ public class HandyGridView extends GridView implements AdapterView.OnItemLongCli
 
     private View mDraggedView;
     private int mDraggedIndex = -1;
-    private Rect mDraggedRect = new Rect();
+    private final Rect mDraggedRect = new Rect();
     private int mColumnWidth, mRowHeight, mColumnsNum;
     private int mHorizontalSpacing;
     private int mVerticalSpacing;
@@ -533,10 +533,7 @@ public class HandyGridView extends GridView implements AdapterView.OnItemLongCli
      */
     public boolean canScrollDown() {
         final int threshold = mClipToPadding ? 0 : getListPaddingTop();
-        if (mScrollY < threshold) {
-            return true;
-        }
-        return false;
+        return mScrollY < threshold;
     }
 
     /**
@@ -546,10 +543,7 @@ public class HandyGridView extends GridView implements AdapterView.OnItemLongCli
      */
     public boolean canScrollUp() {
         final int threshold = mClipToPadding ? -mScrollY : getListPaddingBottom();
-        if (getTotalScrollY() > -threshold) {
-            return true;
-        }
-        return false;
+        return getTotalScrollY() > -threshold;
     }
 
     public int getTotalScrollY() {
@@ -565,7 +559,7 @@ public class HandyGridView extends GridView implements AdapterView.OnItemLongCli
 
     private void measureDraggedRect() {
         mDraggedView.getGlobalVisibleRect(mDraggedRect);
-        int location[] = new int[2];
+        int[] location = new int[2];
         mDraggedView.getLocationOnScreen(location);
         mDraggedRect.set(location[0], location[1], location[0] + mDraggedRect.width(), location[1] + mDraggedRect.height());
     }
@@ -574,7 +568,7 @@ public class HandyGridView extends GridView implements AdapterView.OnItemLongCli
         if (mGridViewVisibleRect == null) {
             mGridViewVisibleRect = new Rect();
             getGlobalVisibleRect(mGridViewVisibleRect);
-            int location[] = new int[2];
+            int[] location = new int[2];
             getLocationOnScreen(location);
             mGridViewVisibleRect.set(location[0], location[1], location[0] + mGridViewVisibleRect.width(),
                     location[1] + mGridViewVisibleRect.height());
@@ -584,10 +578,7 @@ public class HandyGridView extends GridView implements AdapterView.OnItemLongCli
     private boolean isFixedPosition(int position) {
         if (position != INVALID_POSITION && mAdapter instanceof OnItemMovedListener) {
             mItemMovedListener = (OnItemMovedListener) mAdapter;
-            if (mItemMovedListener.isFixed(position)) {
-                return true;
-            }
-            return false;
+            return mItemMovedListener.isFixed(position);
         }
         return false;
     }

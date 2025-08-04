@@ -123,7 +123,7 @@ public class Parasitics {
                 loader.addProvider(provider);
                 ResourcesLoaderHolderApi30.sResourcesLoader = loader;
             } catch (IOException e) {
-                logForResourceInjectFaulure(path, e, 0);
+                logForResourceInjectFailure(path, e, 0);
                 return;
             }
         }
@@ -147,7 +147,7 @@ public class Parasitics {
                     sResInjectEndTime = System.currentTimeMillis();
                 }
             } catch (Resources.NotFoundException e) {
-                logForResourceInjectFaulure(path, e, 0);
+                logForResourceInjectFailure(path, e, 0);
             }
         });
     }
@@ -166,14 +166,14 @@ public class Parasitics {
                     sResInjectEndTime = System.currentTimeMillis();
                 }
             } catch (Resources.NotFoundException e) {
-                logForResourceInjectFaulure(path, e, 0);
+                logForResourceInjectFailure(path, e, 0);
             }
         } catch (Exception e) {
             Logger.e(e);
         }
     }
 
-    private static void logForResourceInjectFaulure(@NonNull String path, @NonNull Throwable e, int cookie) {
+    private static void logForResourceInjectFailure(@NonNull String path, @NonNull Throwable e, int cookie) {
         Logger.e("Fatal: injectModuleResources: test injection failure!");
         Logger.e("injectModuleResources: path=" + path + ", cookie=" + cookie +
                 ", loader=" + ModernHookEntry.class.getClassLoader());

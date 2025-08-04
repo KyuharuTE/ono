@@ -47,8 +47,8 @@ public class SimpleDragSortView {
     }
 
     private static class GridViewAdapter extends BaseAdapter implements OnItemMovedListener {
-        private List<String> picPath;
-        private List<String> sourceInfo;
+        private final List<String> picPath;
+        private final List<String> sourceInfo;
         public GridViewAdapter(List<String> picPath,List<String> sourceInfo){
             this.picPath = picPath;
             this.sourceInfo = sourceInfo;

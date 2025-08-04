@@ -84,9 +84,9 @@ public class FakeFileSender extends BottomPopupView {
 
                 String send_type = "element";
                 if (chat_type == 1) {
-                    QPacketHelperKt.sendMessage(result, getCurrentPeerID(), false, send_type);
+                    QPacketHelperKt.sendMessage(result, getCurrentPeerID(), false, send_type, false, "");
                 } else if (chat_type == 2) {
-                    QPacketHelperKt.sendMessage(result, getCurrentPeerID(), true, send_type);
+                    QPacketHelperKt.sendMessage(result, getCurrentPeerID(), true, send_type, false, "");
                 } else {
                     Toasts.error(getContext(), "失败");
                     return;

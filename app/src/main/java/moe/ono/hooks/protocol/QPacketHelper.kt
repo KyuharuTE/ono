@@ -38,7 +38,9 @@ fun sendMessage(
     content: String,
     id: String,
     isGroupMsg: Boolean,
-    type: String
+    type: String,
+    longmsg: Boolean,
+    original: String
 ) {
     val TAG = BuildConfig.TAG
     val json = Json { ignoreUnknownKeys = true }
@@ -92,7 +94,11 @@ fun sendMessage(
 
         QQInterfaces.sendBuffer("MessageSvc.PbSendMsg", true, rawBytes)
         if (getItem(QQPacketHelperC2CDisplayFixer::class.java).isEnabled) {
-            CacheConfig.addPbSendMsgPacket(CacheConfig.PbSendMsgPacket(content, id))
+            if (longmsg) {
+                CacheConfig.addPbSendMsgPacket(CacheConfig.PbSendMsgPacket(original, id))
+            } else {
+                CacheConfig.addPbSendMsgPacket(CacheConfig.PbSendMsgPacket(content, id))
+            }
         }
 
     } catch (e: Exception) {

@@ -45,7 +45,7 @@ internal fun Class<*>.hookMethod(name: String, hook: XC_MethodHook) {
     XposedBridge.hookAllMethods(this, name, hook)
 }
 
-internal fun beforeHook(ver: Int = XCallback.PRIORITY_DEFAULT, block: (param: XC_MethodHook.MethodHookParam) -> Unit): XC_MethodHook {
+internal fun beforeHook(ver: Int = XCallback.PRIORITY_DEFAULT, block: (param: MethodHookParam) -> Unit): XC_MethodHook {
     return object :XC_MethodHook(ver) {
         override fun beforeHookedMethod(param: MethodHookParam) {
             kotlin.runCatching {
@@ -57,7 +57,7 @@ internal fun beforeHook(ver: Int = XCallback.PRIORITY_DEFAULT, block: (param: XC
     }
 }
 
-internal fun afterHook(ver: Int = XCallback.PRIORITY_DEFAULT, block: (param: XC_MethodHook.MethodHookParam) -> Unit): XC_MethodHook {
+internal fun afterHook(ver: Int = XCallback.PRIORITY_DEFAULT, block: (param: MethodHookParam) -> Unit): XC_MethodHook {
     return object :XC_MethodHook(ver) {
         override fun afterHookedMethod(param: MethodHookParam) {
             kotlin.runCatching {

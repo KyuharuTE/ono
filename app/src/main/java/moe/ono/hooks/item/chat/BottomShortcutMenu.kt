@@ -72,18 +72,18 @@ class BottomShortcutMenu : BaseSwitchFunctionHookItem() {
         val sendFakeFile =
             ConfigManager.getDefaultConfig().getBooleanOrFalse(Constants.PrekSendFakeFile)
         val qqPacketHelper = ConfigManager.getDefaultConfig().getBooleanOrFalse(
-            Constants.PrekXXX + HookItemFactory.getItem(
+            Constants.PrekXXX + getItem(
                 QQPacketHelperEntry::class.java
             ).path
         )
         val qqMessageTracker = ConfigManager.getDefaultConfig().getBooleanOrFalse(
-            Constants.PrekClickableXXX + HookItemFactory.getItem(
+            Constants.PrekClickableXXX + getItem(
                 QQMessageTracker::class.java
             ).path
         )
 
         val messageEncryptor = ConfigManager.getDefaultConfig().getBooleanOrFalse(
-            Constants.PrekClickableXXX + HookItemFactory.getItem(
+            Constants.PrekClickableXXX + getItem(
                 MessageEncryptor::class.java
             ).path
         )
@@ -139,14 +139,14 @@ class BottomShortcutMenu : BaseSwitchFunctionHookItem() {
                     }
                     "开启加密抄送" -> {
                         ConfigManager.dPutBoolean(
-                            Constants.PrekClickableXXX + HookItemFactory.getItem(
+                            Constants.PrekClickableXXX + getItem(
                                 MessageEncryptor::class.java
                             ).path, true
                         )
                     }
                     "关闭加密抄送" -> {
                         ConfigManager.dPutBoolean(
-                            Constants.PrekClickableXXX + HookItemFactory.getItem(
+                            Constants.PrekClickableXXX + getItem(
                                 MessageEncryptor::class.java
                             ).path, false
                         )

@@ -145,8 +145,7 @@ public class JsonViewer extends LinearLayout {
 
     private void changeVisibility(ViewGroup group, int oldVisibility) {
         for (int i = 0; i < group.getChildCount(); ++i) {
-            if (group.getChildAt(i) instanceof TextView && group.getChildAt(i + 1) instanceof ViewGroup && group.getChildAt(i + 2) instanceof TextView) {
-                ViewGroup groupChild = (ViewGroup) group.getChildAt(i + 1);
+            if (group.getChildAt(i) instanceof TextView && group.getChildAt(i + 1) instanceof ViewGroup groupChild && group.getChildAt(i + 2) instanceof TextView) {
                 groupChild.setVisibility(oldVisibility);
                 group.getChildAt(i).callOnClick();
                 this.changeVisibility((ViewGroup) group.getChildAt(i + 1), oldVisibility);
@@ -281,8 +280,7 @@ public class JsonViewer extends LinearLayout {
         content.setOrientation(LinearLayout.VERTICAL);
         content.setPadding((int) this.PADDING, 0, 0, 0);
         content.setLayoutTransition(new LayoutTransition());
-        if (jsonNode instanceof JSONObject) {
-            JSONObject object = (JSONObject) jsonNode;
+        if (jsonNode instanceof JSONObject object) {
             Iterator<String> iterator = object.keys();
             while (iterator.hasNext()) {
                 String key = iterator.next();
@@ -292,8 +290,7 @@ public class JsonViewer extends LinearLayout {
                     Logger.e(e);
                 }
             }
-        } else if (jsonNode instanceof JSONArray) {
-            JSONArray object = (JSONArray) jsonNode;
+        } else if (jsonNode instanceof JSONArray object) {
             for (int i = 0; i < object.length(); ++i) {
                 try {
                     this.addJsonNode(content, i, object.get(i), i + 1 < object.length());
